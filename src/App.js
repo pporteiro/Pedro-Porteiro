@@ -3,18 +3,20 @@ import "./App.css";
 
 import MyNavbar from "./components/Navbar/NavBar";
 import Button from "./components/Button/Button";
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 
 const App = () => {
   const commerceName = "Pedidos Libre";
 
   const myFunction = () => {
-    console.log("Click");
+    console.log("Click!!");
   };
 
   return (
     <>
       <div className="App">
         <MyNavbar name={commerceName} logo={logo} />
+        <ItemListContainer />
         <Button callback={myFunction} label={"Boton"} />
       </div>
     </>

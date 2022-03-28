@@ -1,5 +1,9 @@
 import "bootstrap/dist/css/bootstrap.css";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Badge, Nav, Navbar, NavDropdown } from "react-bootstrap";
+// import { ShoppingCart } from "@material-ui/icons";
+// import { IconButton } from "@material-ui/core";
+
+import CartWidget from "../CartWidget/CartWidget";
 
 const MyNavbar = (props) => {
   console.log(props);
@@ -12,7 +16,7 @@ const MyNavbar = (props) => {
 
       <Navbar.Toggle />
       <Navbar.Collapse>
-        <Nav>
+        <Nav className="me-auto">
           <NavDropdown title="Products">
             <NavDropdown.Item href="#products/cars">Cars</NavDropdown.Item>
             <NavDropdown.Item href="#products/electronics">
@@ -29,7 +33,11 @@ const MyNavbar = (props) => {
           <Nav.Link href="#inicio">Inicio</Nav.Link>
           <Nav.Link href="#about-us">About Us</Nav.Link>
           <Nav.Link href="#contact-us">Contact Us</Nav.Link>
-          <Nav.Link href="#sign-in">SignIn</Nav.Link>
+          <Nav.Link href="#sign-in">Sign In</Nav.Link>
+        </Nav>
+
+        <Nav>
+          <CartWidget />
         </Nav>
       </Navbar.Collapse>
     </Navbar>
