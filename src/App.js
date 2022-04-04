@@ -4,6 +4,7 @@ import "./App.css";
 import MyNavbar from "./components/Navbar/NavBar";
 import Button from "./components/Button/Button";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import ItemCount from "./components/ItemCount/ItemCount";
 
 const App = () => {
   const commerceName = "PedidoLibre";
