@@ -13,8 +13,11 @@ const ItemListContainer = (props) => {
     if (condition === "+") {
       setCount(count + 1);
     }
+    if (condition === "add") {
+      console.log(`Added ${count} items to cart`);
+    }
   };
-  const stock = 6;
+  const stock = 10;
   const initial = 1;
 
   return (

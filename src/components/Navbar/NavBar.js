@@ -30,7 +30,7 @@ const MyNavbar = (props) => {
               Promotions
             </NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link href="#inicio">Inicio</Nav.Link>
+          <Nav.Link href="#inicio">Home</Nav.Link>
           <Nav.Link href="#about-us">About Us</Nav.Link>
           <Nav.Link href="#contact-us">Contact Us</Nav.Link>
         </Nav>
