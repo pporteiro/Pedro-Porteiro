@@ -1,10 +1,21 @@
 import "./ItemListContainer.css";
 import "bootstrap/dist/css/bootstrap.css";
 import ItemCount from "../ItemCount/ItemCount";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import getItems from "../../utils/getItems";
+import ItemList from "../ItemList/ItemList";
 
 const ItemListContainer = (props) => {
   const [count, setCount] = useState(1);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    getItems()
+      .then((prod) => {
+        setProducts(prod);
+      })
+      .catch((error) => console.log(error, "error"));
+  }, [count]);
 
   const onAdd = (condition) => {
     if (condition === "-") {
@@ -22,7 +33,8 @@ const ItemListContainer = (props) => {
 
   return (
     <div className="ItemsList">
-      <ItemCount onAdd={onAdd} stock={stock} initial={initial} count={count} />
+      {/* <ItemCount onAdd={onAdd} stock={stock} initial={initial} count={count} /> */}
+      <ItemList products={products} />
     </div>
   );
 };

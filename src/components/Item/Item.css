@@ -1,0 +1,31 @@
+/* .card-image {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  text-align: center;
+  margin: auto;
+}
+
+.card-text-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+} */
+
+.card-image {
+  height: auto;
+  max-height: 250px;
+  width: auto;
+  max-width: 100px;
+  margin: auto;
+  vertical-align: middle;
+}
+
+.cardClass {
+  display: flex;
+  height: 100%;
+  margin: 16px;
+  padding: 8px;
+  object-fit: cover;
+  text-align: center;
+}
