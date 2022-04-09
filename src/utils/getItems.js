@@ -1,6 +1,6 @@
 import items from "../mock/items";
 
-const getItems = () => {
+export const getItems = () => {
   return new Promise((resolve, reject) => {
     const ok = true;
     setTimeout(() => {
@@ -13,7 +13,7 @@ const getItems = () => {
   });
 };
 
-const getItemById = (id) => {
+export const getItemById = (id) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(items.find((i) => i.id === id));
@@ -21,5 +21,5 @@ const getItemById = (id) => {
   });
 };
 
-export { getItems, getItemById };
+// export { getItems, getItemById };
 // export default getItems;
