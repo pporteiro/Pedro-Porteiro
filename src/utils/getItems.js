@@ -13,4 +13,13 @@ const getItems = () => {
   });
 };
 
-export default getItems;
+const getItemById = (id) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(items.find((i) => i.id === id));
+    }, 500);
+  });
+};
+
+export { getItems, getItemById };
+// export default getItems;

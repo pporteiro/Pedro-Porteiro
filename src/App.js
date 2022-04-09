@@ -2,16 +2,16 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import MyNavbar from "./components/Navbar/NavBar";
-import Button from "./components/Button/Button";
+// import Button from "./components/Button/Button";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
-import ItemCount from "./components/ItemCount/ItemCount";
+import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 
 const App = () => {
   const commerceName = "PedidoLibre";
 
-  const myFunction = () => {
-    console.log("Click!!");
-  };
+  // const myFunction = () => {
+  //   console.log("Click!!");
+  // };
 
   const greeting = "Welcome to PedidoLibre!! ";
 
@@ -20,6 +20,8 @@ const App = () => {
       <div className="App">
         <MyNavbar name={commerceName} logo={logo} />
         <ItemListContainer greeting={greeting} />
+        {/* <ItemDetailContainer /> */}
+
         {/* <Button callback={myFunction} label={"Boton"} /> */}
       </div>
     </>
