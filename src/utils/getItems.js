@@ -14,10 +14,10 @@ export const getItems = () => {
 };
 
 export const getItemById = (id) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(items.find((i) => i.id === id));
-    }, 500);
+    }, 1000);
   });
 };
 

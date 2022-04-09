@@ -19,8 +19,8 @@ const App = () => {
     <>
       <div className="App">
         <MyNavbar name={commerceName} logo={logo} />
-        <ItemListContainer greeting={greeting} />
-        {/* <ItemDetailContainer /> */}
+        {/* <ItemListContainer greeting={greeting} /> */}
+        <ItemDetailContainer />
 
         {/* <Button callback={myFunction} label={"Boton"} /> */}
       </div>

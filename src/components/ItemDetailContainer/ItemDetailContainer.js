@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getItems, getItemById } from "../../utils/getItems";
 import ItemDetail from "../ItemDetail/ItemDetail";
+import "./ItemDetailContainer.css";
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState();
@@ -20,17 +21,27 @@ const ItemDetailContainer = () => {
   //   }, []);
 
   useEffect(() => {
-    getItems()
+    getItemById(1)
       .then((prod) => {
         setProduct(prod);
       })
-      .catch((error) => console.log(error, "error"));
+      .catch((error) => console.log(error, "error"))
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (
     <div className="ItemsDetailContainer">
+      {loading ? (
+        <h1>Cargando...</h1>
+      ) : product ? (
+        <ItemDetail {...product} />
+      ) : (
+        <h1>El producto no existe</h1>
+      )}
       {/* <ItemCount onAdd={onAdd} stock={stock} initial={initial} count={count} /> */}
-      <ItemDetail products={product} />
+      {/* <ItemDetail product={} /> */}
     </div>
   );
 };
