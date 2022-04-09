@@ -3,8 +3,9 @@ import "./App.css";
 
 import MyNavbar from "./components/Navbar/NavBar";
 // import Button from "./components/Button/Button";
-import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+// import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
+// import MLListContainer from "./components/MLListContainer/MLListContainer";
 
 const App = () => {
   const commerceName = "PedidoLibre";
@@ -19,8 +20,10 @@ const App = () => {
     <>
       <div className="App">
         <MyNavbar name={commerceName} logo={logo} />
-        <ItemListContainer greeting={greeting} />
-        {/* <ItemDetailContainer /> */}
+        {/* <ItemListContainer greeting={greeting} /> */}
+        <ItemDetailContainer />
+
+        {/* <MLListContainer /> */}
 
         {/* <Button callback={myFunction} label={"Boton"} /> */}
       </div>

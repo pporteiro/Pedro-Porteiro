@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getItems, getItemById } from "../../utils/getItems";
+// import { getItems, getItemById } from "../../utils/getItems";
 import ItemDetail from "../ItemDetail/ItemDetail";
 
 const ItemDetailContainer = () => {
@@ -19,13 +19,13 @@ const ItemDetailContainer = () => {
   //       });
   //   }, []);
 
-  useEffect(() => {
-    getItems()
-      .then((prod) => {
-        setProduct(prod);
-      })
-      .catch((error) => console.log(error, "error"));
-  }, []);
+  //   useEffect(() => {
+  //     getItems()
+  //       .then((prod) => {
+  //         setProduct(prod);
+  //       })
+  //       .catch((error) => console.log(error, "error"));
+  //   }, []);
 
   return (
     <div className="ItemsDetailContainer">

@@ -2,7 +2,7 @@ import "./ItemListContainer.css";
 import "bootstrap/dist/css/bootstrap.css";
 import ItemCount from "../ItemCount/ItemCount";
 import { useState, useEffect } from "react";
-import getItems from "../../utils/getItems";
+import { getItems } from "../../utils/getItems";
 import ItemList from "../ItemList/ItemList";
 
 const ItemListContainer = (props) => {
