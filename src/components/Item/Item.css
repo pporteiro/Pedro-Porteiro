@@ -29,3 +29,7 @@
   object-fit: cover;
   text-align: center;
 }
+
+.btn-detail a {
+  color: white;
+}

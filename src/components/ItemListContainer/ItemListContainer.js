@@ -5,17 +5,21 @@ import { useState, useEffect } from "react";
 import { getItems } from "../../utils/getItems";
 import ItemList from "../ItemList/ItemList";
 
+import { useParams } from "react-router-dom";
+
 const ItemListContainer = (props) => {
   const [count, setCount] = useState(1);
   const [products, setProducts] = useState([]);
 
+  const { categoryId } = useParams();
+
   useEffect(() => {
-    getItems()
+    getItems(categoryId)
       .then((prod) => {
         setProducts(prod);
       })
       .catch((error) => console.log(error, "error"));
-  }, [count]);
+  }, [categoryId]);
 
   const onAdd = (condition) => {
     if (condition === "-") {
@@ -32,7 +36,7 @@ const ItemListContainer = (props) => {
   const initial = 1;
 
   return (
-    <div className="ItemsList">
+    <div className="ItemsListContainer">
       {/* <ItemCount onAdd={onAdd} stock={stock} initial={initial} count={count} /> */}
       <ItemList products={products} />
     </div>

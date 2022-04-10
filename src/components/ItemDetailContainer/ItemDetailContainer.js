@@ -2,26 +2,16 @@ import { useState, useEffect } from "react";
 import { getItems, getItemById } from "../../utils/getItems";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import "./ItemDetailContainer.css";
+import { useParams } from "react-router-dom";
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
 
-  //   useEffect(() => {
-  //     getItemById(1)
-  //       .then((item) => {
-  //         setProduct(item);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       })
-  //       .finally(() => {
-  //         setLoading(false);
-  //       });
-  //   }, []);
+  const { productId } = useParams();
 
   useEffect(() => {
-    getItemById(1)
+    getItemById(productId)
       .then((prod) => {
         setProduct(prod);
       })
