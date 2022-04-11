@@ -1,7 +1,13 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
 import "./ItemDetail.css";
+import ItemCount from "../ItemCount/ItemCount";
+
 const ItemDetail = (product) => {
   console.log(product);
+
+  const onAdd = (c) => {
+    console.log(`Added ${c} items to cart!`);
+  };
   return (
     <>
       <Container>
@@ -26,6 +32,10 @@ const ItemDetail = (product) => {
 
               <Row>
                 <p className="card-title">{product.description}</p>
+              </Row>
+              <Row>
+                {/* <ItemCount /> */}
+                <ItemCount onAdd={onAdd} stock={product.stock} initial={1} />
               </Row>
             </Card>
           </Col>
