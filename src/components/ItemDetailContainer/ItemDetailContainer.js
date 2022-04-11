@@ -19,7 +19,7 @@ const ItemDetailContainer = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [productId]);
 
   return (
     <div className="ItemsDetailContainer">
