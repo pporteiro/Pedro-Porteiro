@@ -1,11 +1,12 @@
-.ItemsList {
-  margin-top: 80px;
+.ItemsListContainer {
+  /* margin-top: 80px; */
   padding: 12px;
   height: 300;
+  text-align: center;
 }
 
 @media (max-width: 674px) {
-  .ItemsList {
+  .ItemsListContainer {
     margin-top: 60px;
   }
 }
