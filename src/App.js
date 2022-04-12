@@ -3,10 +3,10 @@ import "./App.css";
 
 import MyNavbar from "./components/Navbar/NavBar";
 // import Button from "./components/Button/Button";
-// import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 // import MLListContainer from "./components/MLListContainer/MLListContainer";
-
+import MLDataGet from "./components/MLListContainer/MLDataGet";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
@@ -21,13 +21,6 @@ const App = () => {
   return (
     <>
       <div className="App">
-<<<<<<< HEAD
-        <MyNavbar name={commerceName} logo={logo} />
-        {/* <ItemListContainer greeting={greeting} /> */}
-        <ItemDetailContainer />
-
-        {/* <MLListContainer /> */}
-=======
         <BrowserRouter>
           <MyNavbar name={commerceName} logo={logo} />
           <Routes>
@@ -43,9 +36,10 @@ const App = () => {
             <Route path="/item/:productId" element={<ItemDetailContainer />} />
 
             <Route path="*" element={<h1>404 NOT FOUND</h1>} />
+
+            <Route path="/MLGet" element={<MLDataGet />} />
           </Routes>
         </BrowserRouter>
->>>>>>> Router
 
         {/* <Button callback={myFunction} label={"Boton"} /> */}
       </div>
