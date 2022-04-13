@@ -1,21 +1,16 @@
 import "./ItemListContainer.css";
 import "bootstrap/dist/css/bootstrap.css";
-import ItemCount from "../ItemCount/ItemCount";
 import { useState, useEffect } from "react";
 import { getItems } from "../../utils/getItems";
 import ItemList from "../ItemList/ItemList";
+import { getCategories } from "../../utils/getItems";
 
 import { useParams } from "react-router-dom";
 
 const ItemListContainer = (props) => {
-  // const [count, setCount] = useState(1);
   const [products, setProducts] = useState([]);
 
   const { categoryId } = useParams();
-
-  // const onAdd = (c) => {
-  //   console.log(`Added ${c} items to cart!`);
-  // };
 
   useEffect(() => {
     getItems(categoryId)
@@ -25,12 +20,16 @@ const ItemListContainer = (props) => {
       .catch((error) => console.log(error, "error"));
   }, [categoryId]);
 
-  // const stock = 10;
-  // const initial = 1;
+  const [category, setCategories] = useState([]);
+  useEffect(() => {
+    getCategories().then((categories) => {
+      setCategories(categories.find((c) => c.id === categoryId));
+    });
+  });
 
   return (
     <div className="ItemsListContainer">
-      {/* <ItemCount onAdd={onAdd} stock={stock} initial={initial} /> */}
+      {category ? <h1>{category.description}</h1> : <h1>All items</h1>}
       <ItemList products={products} />
     </div>
   );

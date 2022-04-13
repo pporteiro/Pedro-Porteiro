@@ -12,10 +12,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 const App = () => {
   const commerceName = "PedidoLibre";
 
-  // const myFunction = () => {
-  //   console.log("Click!!");
-  // };
-
   const greeting = "Welcome to PedidoLibre!! ";
 
   return (
@@ -24,7 +20,6 @@ const App = () => {
         <BrowserRouter>
           <MyNavbar name={commerceName} logo={logo} />
           <Routes>
-            {/* <Route path="/" element={<h1>HOME</h1>} /> */}
             <Route
               path="/"
               element={<ItemListContainer greeting={greeting} />}
@@ -40,8 +35,6 @@ const App = () => {
             <Route path="/MLGet" element={<MLDataGet />} />
           </Routes>
         </BrowserRouter>
-
-        {/* <Button callback={myFunction} label={"Boton"} /> */}
       </div>
     </>
   );

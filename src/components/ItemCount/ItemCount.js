@@ -3,7 +3,7 @@ import "./ItemCount.css";
 import { useState, useEffect } from "react";
 
 const ItemCount = ({ stock, initial, onAdd }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     console.log("cambio el count");

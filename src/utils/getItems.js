@@ -27,15 +27,13 @@ export const getItemById = (id) => {
 };
 
 const categories = [
-  { id: "electronics", description: "Electronics" },
-  { id: "cars", description: "Cars" },
-  { id: "real-state", description: "Real State" },
+  { id: "electronics", description: "Electronics", linkNumber: "1" },
+  { id: "cars", description: "Cars", linkNumber: "2" },
+  { id: "real-state", description: "Real State", linkNumber: "3" },
 ];
 
 export const getCategories = () => {
   return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(categories);
-    }, 500);
+    resolve(categories);
   });
 };

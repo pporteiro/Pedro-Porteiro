@@ -15,9 +15,12 @@ const Item = (props) => {
             <Card.Title>{props.title}</Card.Title>
             <Card.Text>{props.description}</Card.Text>
             <Card.Title>${props.price}</Card.Title>
-            <Button className="btn-detail" variant="primary">
-              <Link to={`/item/${props.id}`}> Detalles </Link>
-            </Button>
+
+            <Link to={`/item/${props.id}`}>
+              <Button className="btn-detail" variant="primary">
+                Detalles
+              </Button>
+            </Link>
           </div>
         </Card.Body>
       </Card>

@@ -33,3 +33,10 @@
 .btn-detail a {
   color: white;
 }
+
+.card-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  /* max-height: 100px; */
+}
