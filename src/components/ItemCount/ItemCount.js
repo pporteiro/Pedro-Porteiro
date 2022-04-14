@@ -1,6 +1,6 @@
-import { ButtonGroup, Button } from "react-bootstrap";
 import "./ItemCount.css";
 import { useState, useEffect } from "react";
+import { ButtonGroup, Button } from "react-bootstrap";
 
 const ItemCount = ({ stock, initial, onAdd }) => {
   const [count, setCount] = useState(1);

@@ -2,18 +2,12 @@ import items from "../mock/items";
 
 export const getItems = (categoryId) => {
   return new Promise((resolve, reject) => {
-    const ok = true;
     setTimeout(() => {
-      if (ok) {
-        // resolve(items);
-        resolve(
-          categoryId
-            ? items.filter((prod) => prod.category === categoryId)
-            : items
-        );
-      } else {
-        reject("error");
-      }
+      resolve(
+        categoryId
+          ? items.filter((prod) => prod.category === categoryId)
+          : items
+      );
     }, 2000);
   });
 };

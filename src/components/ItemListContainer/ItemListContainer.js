@@ -1,11 +1,10 @@
 import "./ItemListContainer.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { getItems } from "../../utils/getItems";
 import ItemList from "../ItemList/ItemList";
-// import { getCategories } from "../../utils/getItems";
 import Loader from "../Loader/Loader";
-import { useParams } from "react-router-dom";
 
 const ItemListContainer = (props) => {
   const [products, setProducts] = useState([]);
@@ -25,26 +24,17 @@ const ItemListContainer = (props) => {
       });
   }, [categoryId]);
 
-  // const [category, setCategories] = useState([]);
-  // useEffect(() => {
-  //   getCategories().then((categories) => {
-  //     setCategories(categories.find((c) => c.id === categoryId));
-  //   });
-  // });
-
   return (
     <div className="ItemsListContainer">
       {loading ? (
         <div className="pos-center">
           <Loader />
         </div>
-      ) : // <h1>Cargando...</h1>
-      products ? (
+      ) : products ? (
         <ItemList products={products} />
       ) : (
         <h1>No products to show</h1>
       )}
-      {/* {category ? <h1>{category.description}</h1> : <h1>All items</h1>} */}
     </div>
   );
 };

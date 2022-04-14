@@ -1,5 +1,5 @@
-import { Container, Row, Col, Card } from "react-bootstrap";
 import "./ItemDetail.css";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import ItemCount from "../ItemCount/ItemCount";
 
 const ItemDetail = (product) => {

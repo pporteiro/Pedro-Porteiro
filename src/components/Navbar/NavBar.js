@@ -1,12 +1,8 @@
 import "bootstrap/dist/css/bootstrap.css";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { getCategories } from "../../utils/getItems";
 import { NavLink } from "react-router-dom";
-
-// import { ShoppingCart } from "@material-ui/icons";
-// import { IconButton } from "@material-ui/core";
-
+import { getCategories } from "../../utils/getItems";
 import CartWidget from "../CartWidget/CartWidget";
 
 const MyNavbar = (props) => {

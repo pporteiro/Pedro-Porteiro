@@ -1,8 +1,8 @@
+import "./ItemDetailContainer.css";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { getItemById } from "../../utils/getItems";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import "./ItemDetailContainer.css";
-import { useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
 
 const ItemDetailContainer = () => {
@@ -28,14 +28,11 @@ const ItemDetailContainer = () => {
         <div className="pos-center">
           <Loader />
         </div>
-      ) : // <h1>Cargando...</h1>
-      product ? (
+      ) : product ? (
         <ItemDetail {...product} />
       ) : (
         <h1>El producto no existe</h1>
       )}
-      {/* <ItemCount onAdd={onAdd} stock={stock} initial={initial} count={count} /> */}
-      {/* <ItemDetail product={} /> */}
     </div>
   );
 };
