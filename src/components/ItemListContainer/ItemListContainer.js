@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { useState, useEffect } from "react";
 import { getItems } from "../../utils/getItems";
 import ItemList from "../ItemList/ItemList";
-import { getCategories } from "../../utils/getItems";
+// import { getCategories } from "../../utils/getItems";
 
 import { useParams } from "react-router-dom";
 
@@ -20,16 +20,16 @@ const ItemListContainer = (props) => {
       .catch((error) => console.log(error, "error"));
   }, [categoryId]);
 
-  const [category, setCategories] = useState([]);
-  useEffect(() => {
-    getCategories().then((categories) => {
-      setCategories(categories.find((c) => c.id === categoryId));
-    });
-  });
+  // const [category, setCategories] = useState([]);
+  // useEffect(() => {
+  //   getCategories().then((categories) => {
+  //     setCategories(categories.find((c) => c.id === categoryId));
+  //   });
+  // });
 
   return (
     <div className="ItemsListContainer">
-      {category ? <h1>{category.description}</h1> : <h1>All items</h1>}
+      {/* {category ? <h1>{category.description}</h1> : <h1>All items</h1>} */}
       <ItemList products={products} />
     </div>
   );

@@ -26,7 +26,7 @@ const MyNavbar = (props) => {
       sticky="top"
       collapseOnSelect
     >
-      <Navbar.Brand as={NavLink} to="/">
+      <Navbar.Brand href="/">
         <img src={props.logo} width="40px" height="40px" alt="LogoImage" />
         {props.name}
       </Navbar.Brand>
