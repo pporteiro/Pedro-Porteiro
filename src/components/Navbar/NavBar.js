@@ -26,7 +26,7 @@ const MyNavbar = (props) => {
       sticky="top"
       collapseOnSelect
     >
-      <Navbar.Brand href="/">
+      <Navbar.Brand as={NavLink} to="/">
         <img src={props.logo} width="40px" height="40px" alt="LogoImage" />
         {props.name}
       </Navbar.Brand>
@@ -50,7 +50,6 @@ const MyNavbar = (props) => {
             </NavDropdown.Item>
           </NavDropdown> */}
 
-          {/* SOMEHOW IT TAKES TIME TO LOAD ON EACH PAGE */}
           {categories.map((cat) => (
             <Nav.Link
               as={NavLink}

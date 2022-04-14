@@ -3,6 +3,7 @@ import { getItemById } from "../../utils/getItems";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import "./ItemDetailContainer.css";
 import { useParams } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState();
@@ -24,8 +25,11 @@ const ItemDetailContainer = () => {
   return (
     <div className="ItemsDetailContainer">
       {loading ? (
-        <h1>Cargando...</h1>
-      ) : product ? (
+        <div className="pos-center">
+          <Loader />
+        </div>
+      ) : // <h1>Cargando...</h1>
+      product ? (
         <ItemDetail {...product} />
       ) : (
         <h1>El producto no existe</h1>

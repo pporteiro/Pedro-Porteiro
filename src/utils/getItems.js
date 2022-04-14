@@ -14,7 +14,7 @@ export const getItems = (categoryId) => {
       } else {
         reject("error");
       }
-    }, 500);
+    }, 2000);
   });
 };
 
