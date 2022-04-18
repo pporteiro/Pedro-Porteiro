@@ -6,8 +6,10 @@ import MyNavbar from "./components/Navbar/NavBar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 // import MLListContainer from "./components/MLListContainer/MLListContainer";
-import MLDataGet from "./components/MLListContainer/MLDataGet";
+// import MLDataGet from "./components/MLListContainer/MLDataGet";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Form from "./components/Form/Form";
 
 const App = () => {
   const commerceName = "PedidoLibre";
@@ -19,6 +21,10 @@ const App = () => {
       <div className="App">
         <BrowserRouter>
           <MyNavbar name={commerceName} logo={logo} />
+          <Link to="/form" className="Option">
+            {" "}
+            Form{" "}
+          </Link>
           <Routes>
             <Route
               path="/"
@@ -32,7 +38,9 @@ const App = () => {
 
             <Route path="*" element={<h1>404 NOT FOUND</h1>} />
 
-            <Route path="/MLGet" element={<MLDataGet />} />
+            <Route path="/form" element={<Form />} />
+
+            {/* <Route path="/MLGet" element={<MLDataGet />} /> */}
           </Routes>
         </BrowserRouter>
       </div>
