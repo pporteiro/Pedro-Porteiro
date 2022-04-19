@@ -1,14 +1,19 @@
 import "./ItemDetail.css";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import ItemCount from "../ItemCount/ItemCount";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ItemDetail = (product) => {
   console.log(product);
 
-  const onAdd = (c) => {
-    console.log(`Added ${c} items to cart!`);
-    alert(`Added ${c} items to cart.`);
+  const [quantity, setQuantity] = useState(0);
+
+  const handleAdd = (count) => {
+    console.log(`Added ${count} items to cart!`);
+    setQuantity(count);
   };
+
   return (
     <>
       <Container>
@@ -35,7 +40,15 @@ const ItemDetail = (product) => {
                 <p className="card-title">{product.description}</p>
               </Row>
               <Row>
-                <ItemCount onAdd={onAdd} stock={product.stock} initial={1} />
+                {quantity > 0 ? (
+                  <Link to="/cart">Ir al carrito</Link>
+                ) : (
+                  <ItemCount
+                    onAdd={handleAdd}
+                    stock={product.stock}
+                    initial={1}
+                  />
+                )}
               </Row>
             </Card>
           </Col>
