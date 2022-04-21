@@ -5,12 +5,18 @@ import { NavLink } from "react-router-dom";
 import { getCategories } from "../../utils/getItems";
 import CartWidget from "../CartWidget/CartWidget";
 
+//  === FIREBASE ===
+// import { firestoredb } from "../../services/firebase";
+// import { getDocs, collection } from "firebase/firestore";
+
 const MyNavbar = (props) => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     getCategories().then((categories) => {
       setCategories(categories);
     });
+
+    // getDocs(collection(firestoredb, "categories")).then();
   });
 
   return (
@@ -66,7 +72,9 @@ const MyNavbar = (props) => {
         </Nav>
 
         <Nav>
-          <CartWidget />
+          <Nav.Link as={NavLink} to="/cart">
+            <CartWidget />
+          </Nav.Link>
           <Nav.Link as={NavLink} to="#sign-in" eventKey="link-5">
             Sign In
           </Nav.Link>

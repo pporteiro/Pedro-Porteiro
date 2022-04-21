@@ -1,17 +1,25 @@
 import "./ItemDetail.css";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import ItemCount from "../ItemCount/ItemCount";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import CartContext from "../../context/CartContext";
 
-const ItemDetail = (product) => {
-  console.log(product);
-
-  const [quantity, setQuantity] = useState(0);
+const ItemDetail = ({ id, title, price, description, pictureUrl, stock }) => {
+  const { addItem, isInCart, getQuantityOfItem, removeItem } =
+    useContext(CartContext);
 
   const handleAdd = (count) => {
-    console.log(`Added ${count} items to cart!`);
-    setQuantity(count);
+    // console.log(`Added ${count} items to cart!`);
+
+    const objProd = {
+      id,
+      title,
+      price,
+      quantity: count,
+    };
+
+    addItem(objProd);
   };
 
   return (
@@ -20,7 +28,7 @@ const ItemDetail = (product) => {
         <Row>
           <Col className="center">
             <Card.Img
-              src={product.pictureUrl}
+              src={pictureUrl}
               alt="Card image"
               className="detail-img"
             />
@@ -28,26 +36,45 @@ const ItemDetail = (product) => {
           <Col className="center-text">
             <Card className=" ">
               <Row>
-                <h1 className="card-title">{product.title}</h1>
+                <h1 className="card-title">{title}</h1>
               </Row>
               <br />
               <Row>
-                <h2 className="card-title">${product.price}</h2>
+                <h2 className="card-title">${price}</h2>
               </Row>
               <br />
 
               <Row>
-                <p className="card-title">{product.description}</p>
+                <p className="card-title">{description}</p>
               </Row>
               <Row>
-                {quantity > 0 ? (
-                  <Link to="/cart">Ir al carrito</Link>
+                {isInCart(id) ? (
+                  <>
+                    {/* <Link to="/cart">Ir al carrito</Link> */}
+
+                    <ItemCount
+                      onAdd={handleAdd}
+                      stock={stock}
+                      initial={getQuantityOfItem(id)}
+                    />
+                  </>
                 ) : (
-                  <ItemCount
-                    onAdd={handleAdd}
-                    stock={product.stock}
-                    initial={1}
-                  />
+                  <ItemCount onAdd={handleAdd} stock={stock} initial={1} />
+                )}
+                {isInCart(id) ? (
+                  <div>
+                    <Link to="/cart">See in cart</Link>
+                    <p
+                      className="btn btn-primary yaencarro"
+                      onClick={() => {
+                        removeItem(id);
+                      }}
+                    >
+                      Remove from cart
+                    </p>
+                  </div>
+                ) : (
+                  <div></div>
                 )}
               </Row>
             </Card>

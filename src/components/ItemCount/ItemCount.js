@@ -5,9 +5,9 @@ import { ButtonGroup, Button } from "react-bootstrap";
 const ItemCount = ({ stock, initial, onAdd }) => {
   const [count, setCount] = useState(1);
 
-  useEffect(() => {
-    console.log("cambio el count");
-  }, [count]);
+  // useEffect(() => {
+  //   console.log("cambio el count");
+  // }, [count]);
 
   const changeCounter = (condition) => {
     if (condition === "-") {
@@ -21,30 +21,36 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
   return (
     <div className="">
-      <ButtonGroup className="mb-2">
-        <Button
-          className="btn-left"
-          onClick={() => {
-            if (count > initial) {
-              changeCounter("-");
-            }
-          }}
-        >
-          -
-        </Button>
+      {stock > 1 ? (
+        <>
+          <ButtonGroup className="mb-2">
+            <Button
+              className="btn-left"
+              onClick={() => {
+                if (count > initial) {
+                  changeCounter("-");
+                }
+              }}
+            >
+              -
+            </Button>
 
-        <Button className="disabled">{count}</Button>
+            <Button className="disabled">{count}</Button>
 
-        <Button
-          className="btn-right"
-          onClick={() => {
-            if (count < stock) changeCounter("+");
-          }}
-        >
-          +
-        </Button>
-      </ButtonGroup>
-      <br />
+            <Button
+              className="btn-right"
+              onClick={() => {
+                if (count < stock) changeCounter("+");
+              }}
+            >
+              +
+            </Button>
+          </ButtonGroup>
+          <br />
+        </>
+      ) : (
+        <br />
+      )}
 
       <ButtonGroup>
         <Button

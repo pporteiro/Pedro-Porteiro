@@ -10,6 +10,8 @@ import Cart from "./components/Cart/Cart";
 // import MLDataGet from "./components/MLListContainer/MLDataGet";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { CartContextProvider } from "./context/CartContext";
+
 const App = () => {
   const commerceName = "PedidoLibre";
 
@@ -18,26 +20,31 @@ const App = () => {
   return (
     <>
       <div className="App">
-        <BrowserRouter>
-          <MyNavbar name={commerceName} logo={logo} />
-          <Routes>
-            <Route
-              path="/"
-              element={<ItemListContainer greeting={greeting} />}
-            />
-            <Route
-              path="/category/:categoryId"
-              element={<ItemListContainer greeting={greeting} />}
-            />
-            <Route path="/item/:productId" element={<ItemDetailContainer />} />
+        <CartContextProvider>
+          <BrowserRouter>
+            <MyNavbar name={commerceName} logo={logo} />
+            <Routes>
+              <Route
+                path="/"
+                element={<ItemListContainer greeting={greeting} />}
+              />
+              <Route
+                path="/category/:categoryId"
+                element={<ItemListContainer greeting={greeting} />}
+              />
+              <Route
+                path="/item/:productId"
+                element={<ItemDetailContainer />}
+              />
 
-            <Route path="*" element={<h1>404 NOT FOUND</h1>} />
+              <Route path="*" element={<h1>404 NOT FOUND</h1>} />
 
-            <Route path="/cart" element={<Cart />} />
+              <Route path="/cart" element={<Cart />} />
 
-            {/* <Route path="/MLGet" element={<MLDataGet />} /> */}
-          </Routes>
-        </BrowserRouter>
+              {/* <Route path="/MLGet" element={<MLDataGet />} /> */}
+            </Routes>
+          </BrowserRouter>
+        </CartContextProvider>
       </div>
     </>
   );
