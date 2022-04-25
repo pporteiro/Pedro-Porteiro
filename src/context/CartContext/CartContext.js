@@ -1,33 +1,44 @@
 import { createContext, useState } from "react";
-
+import { checkStock } from "./helper";
 const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [errors, setErrors] = useState([]);
   console.log(cart);
 
-  const addItem = (productToAdd) => {
-    if (isInCart(productToAdd.id)) {
-      console.log("Update quantity");
-      const np = updateQuantity(productToAdd);
-      removeItem(productToAdd.id);
-      setCart([...cart, np]);
+  const addItem = (productToAdd, stock) => {
+    let errors = [];
+
+    if (isInCart(productToAdd?.id)) {
+      const newCart = cart.map((item) => {
+        if (item.id === productToAdd.id) {
+          console.log("Update quantity");
+          const enoughStock = checkStock(productToAdd.quantity, stock);
+
+          if (!enoughStock) {
+            errors.push(`Not enough stock for ${item.title}`);
+            setErrors(errors);
+            return item;
+          }
+
+          return { ...item, quantity: productToAdd.quantity };
+        }
+        return item;
+      });
+
+      if (errors.length === 0) {
+        setCart(newCart);
+        setErrors([]);
+      }
     } else {
-      setCart([...cart, productToAdd]);
+      setCart([...cart, ...(productToAdd ? [productToAdd] : [])]);
     }
   };
 
-  const updateQuantity = (p) => {
-    const q = getQuantity(p.id);
-    const q2 = p.quantity + q;
-    const newProduct = { ...p, quantity: q2 };
-
-    return newProduct;
-  };
-
-  const removeItem = (id) => {
+  const removeItem = async (id) => {
     const products = cart.filter((prod) => prod.id !== id);
-    setCart(products);
+    await setCart(products);
   };
 
   const getQuantity = (id) => {
@@ -52,13 +63,6 @@ export const CartContextProvider = ({ children }) => {
     setCart([]);
   };
 
-  const getQuantityOfItem = (id) => {
-    // id will always be on cart. isInCart will run first always.
-    const item = cart.find((prod) => prod.id === id);
-    // console.log(item.quantity);
-    return item.quantity;
-  };
-
   return (
     <CartContext.Provider
       value={{
@@ -66,8 +70,8 @@ export const CartContextProvider = ({ children }) => {
         addItem,
         getQuantity,
         isInCart,
-        getQuantityOfItem,
         removeItem,
+        errors,
       }}
     >
       {children}

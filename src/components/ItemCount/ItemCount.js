@@ -5,9 +5,10 @@ import { ButtonGroup, Button } from "react-bootstrap";
 const ItemCount = ({ stock, initial, onAdd }) => {
   const [count, setCount] = useState(1);
 
-  // useEffect(() => {
-  //   console.log("cambio el count");
-  // }, [count]);
+  useEffect(() => {
+    console.log("cambio el count");
+    setCount(initial);
+  }, [initial]);
 
   const changeCounter = (condition) => {
     if (condition === "-") {
@@ -27,7 +28,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
             <Button
               className="btn-left"
               onClick={() => {
-                if (count > initial) {
+                if (count > 1) {
                   changeCounter("-");
                 }
               }}

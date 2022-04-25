@@ -6,7 +6,7 @@ import { useContext } from "react";
 import CartContext from "../../context/CartContext";
 
 const ItemDetail = ({ id, title, price, description, pictureUrl, stock }) => {
-  const { addItem, isInCart, getQuantityOfItem, removeItem } =
+  const { addItem, isInCart, getQuantityOfItem, removeItem, errors } =
     useContext(CartContext);
 
   const handleAdd = (count) => {
@@ -19,7 +19,7 @@ const ItemDetail = ({ id, title, price, description, pictureUrl, stock }) => {
       quantity: count,
     };
 
-    addItem(objProd);
+    addItem(objProd, stock);
   };
 
   return (
@@ -76,6 +76,9 @@ const ItemDetail = ({ id, title, price, description, pictureUrl, stock }) => {
                 ) : (
                   <div></div>
                 )}
+
+                {errors.length > 0 &&
+                  errors.map((e, index) => <h4 key={index}>{e}</h4>)}
               </Row>
             </Card>
           </Col>
