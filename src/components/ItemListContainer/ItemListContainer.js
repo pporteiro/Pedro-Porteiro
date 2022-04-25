@@ -6,11 +6,37 @@ import { getItems } from "../../utils/getItems";
 import ItemList from "../ItemList/ItemList";
 import Loader from "../Loader/Loader";
 
+//  === FIREBASE ===
+// import { getDocs, collection, query, where, orderBy } from "firebase/firestore";
+// import { firestoredb } from "../../services/firebase";
+
 const ItemListContainer = (props) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const { categoryId } = useParams();
+
+  // useEffect(() => {
+  //   const collectionRef = categoryId
+  //     ? query(
+  //         collection(firestoredb, "products"),
+  //         where("category", "==", categoryId)
+  //       )
+  //     : query(collection(firestoredb, "products"), orderBy("title", "desc"));
+
+  //   getDocs(collectionRef)
+  //     .then((response) => {
+  //       // console.log(response);
+  //       const products = response.docs.map((doc) => {
+  //         return { id: doc.id, ...doc.data() };
+  //       });
+  //       console.log(products);
+  //       setProducts(products);
+  //     })
+  //     .finally(() => {
+  //       setLoading(false);
+  //     });
+  // }, [categoryId]);
 
   useEffect(() => {
     setLoading(true);

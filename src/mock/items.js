@@ -67,7 +67,7 @@ const items = [
     price: "7800000",
     pictureUrl:
       "http://http2.mlstatic.com/D_868563-MLA47635655141_092021-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "cars",
     permalink:
       "https://auto.mercadolibre.com.ar/MLA-1106582850-amarok-30-tdi-v6-258cv-comfortline-4x4-aut-2022-_JM",
@@ -80,7 +80,7 @@ const items = [
     price: "11799900",
     pictureUrl:
       "http://http2.mlstatic.com/D_676982-MLA47876080459_102021-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "cars",
     permalink:
       "https://auto.mercadolibre.com.ar/MLA-1122979008-amarok-cd-v6-extreme-30-258cv-4x4-at-0km-_JM",
@@ -93,7 +93,7 @@ const items = [
     price: "5490000",
     pictureUrl:
       "http://http2.mlstatic.com/D_687941-MLA48601059070_122021-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "cars",
     permalink:
       "https://auto.mercadolibre.com.ar/MLA-1116441590-citroen-2021-jumpy-16-hdi-business-l3-_JM",
@@ -106,7 +106,7 @@ const items = [
     price: "4000000",
     pictureUrl:
       "http://http2.mlstatic.com/D_728087-MLA48589271948_122021-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "cars",
     permalink:
       "https://auto.mercadolibre.com.ar/MLA-1116295130-citroen-2021-berlingo-multispace-16-hdi-xtr-_JM",
@@ -119,7 +119,7 @@ const items = [
     price: "7799900",
     pictureUrl:
       "http://http2.mlstatic.com/D_658465-MLA47753943321_102021-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "cars",
     permalink:
       "https://auto.mercadolibre.com.ar/MLA-1106568408-volkswagen-amarok-30-tdi-v6-258cv-comfortline-4x4-at-_JM",
@@ -132,7 +132,7 @@ const items = [
     price: "10900000",
     pictureUrl:
       "http://http2.mlstatic.com/D_794837-MLA49042291257_022022-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "cars",
     permalink:
       "https://auto.mercadolibre.com.ar/MLA-1104359393-volkswagen-amarok-30-tdi-v6-258cv-highline-4x4-at-_JM",
@@ -145,7 +145,7 @@ const items = [
     price: "3050000",
     pictureUrl:
       "http://http2.mlstatic.com/D_619885-MLA48756638568_012022-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "cars",
     permalink:
       "https://auto.mercadolibre.com.ar/MLA-1118554688-citroen-2021-berlingo-furgon-16-hdi-business-_JM",
@@ -158,7 +158,7 @@ const items = [
     price: "4200000",
     pictureUrl:
       "http://http2.mlstatic.com/D_646697-MLA48531811863_122021-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "cars",
     permalink:
       "https://auto.mercadolibre.com.ar/MLA-1115852890-citroen-2021-c-4-cactus-16-vti-feel-pk-plus-bt-_JM",
@@ -171,7 +171,7 @@ const items = [
     price: "5149900",
     pictureUrl:
       "http://http2.mlstatic.com/D_666020-MLA47753885934_102021-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "cars",
     permalink:
       "https://auto.mercadolibre.com.ar/MLA-1106534643-amarok-20-tdi-140-cv-trendline-4x2-hard-work-2022-_JM",
@@ -184,7 +184,7 @@ const items = [
     price: "7150000",
     pictureUrl:
       "http://http2.mlstatic.com/D_616308-MLA47586316930_092021-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "cars",
     permalink:
       "https://auto.mercadolibre.com.ar/MLA-1106583053-volkswagen-vento-14-tsi-250-auto-automatico-2021-_JM",
@@ -198,7 +198,7 @@ const items = [
     price: "274000",
     pictureUrl:
       "http://http2.mlstatic.com/D_785906-MLA49576199413_042022-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "real-state",
     permalink:
       "https://casa.mercadolibre.com.ar/MLA-1130755695-venta-casa-a-estrenar-en-barrio-cerrado-prados-del-oeste-country-moreno-_JM",
@@ -211,7 +211,7 @@ const items = [
     price: "740000",
     pictureUrl:
       "http://http2.mlstatic.com/D_992443-MLA49576877253_042022-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "real-state",
     permalink:
       "https://casa.mercadolibre.com.ar/MLA-1130763095-impecable-casa-en-las-lomas-divina-_JM",
@@ -225,7 +225,7 @@ const items = [
     price: "123000",
     pictureUrl:
       "http://http2.mlstatic.com/D_668967-MLA49576195258_042022-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "real-state",
     permalink:
       "https://casa.mercadolibre.com.ar/MLA-1130755678-duplex-3-ambientes-con-cochera-en-villa-ballester-zona-holter-uf1-_JM",
@@ -238,7 +238,7 @@ const items = [
     price: "129000",
     pictureUrl:
       "http://http2.mlstatic.com/D_924234-MLA49575061889_042022-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "real-state",
     permalink:
       "https://casa.mercadolibre.com.ar/MLA-1130695105-casa-en-venta-el-cazador-toma-propiedad-financia-_JM",
@@ -251,7 +251,7 @@ const items = [
     price: "950000",
     pictureUrl:
       "http://http2.mlstatic.com/D_761921-MLA49577556822_042022-I.jpg",
-    stock: "8",
+    stock: "1",
     category: "real-state",
     permalink:
       "https://casa.mercadolibre.com.ar/MLA-1130770480-casa-armenio-_JM",

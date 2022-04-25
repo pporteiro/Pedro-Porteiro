@@ -7,7 +7,8 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
   useEffect(() => {
     console.log("cambio el count");
-  }, [count]);
+    setCount(initial);
+  }, [initial]);
 
   const changeCounter = (condition) => {
     if (condition === "-") {
@@ -21,30 +22,36 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
   return (
     <div className="">
-      <ButtonGroup className="mb-2">
-        <Button
-          className="btn-left"
-          onClick={() => {
-            if (count > initial) {
-              changeCounter("-");
-            }
-          }}
-        >
-          -
-        </Button>
+      {stock > 1 ? (
+        <>
+          <ButtonGroup className="mb-2">
+            <Button
+              className="btn-left"
+              onClick={() => {
+                if (count > 1) {
+                  changeCounter("-");
+                }
+              }}
+            >
+              -
+            </Button>
 
-        <Button className="disabled">{count}</Button>
+            <Button className="disabled">{count}</Button>
 
-        <Button
-          className="btn-right"
-          onClick={() => {
-            if (count < stock) changeCounter("+");
-          }}
-        >
-          +
-        </Button>
-      </ButtonGroup>
-      <br />
+            <Button
+              className="btn-right"
+              onClick={() => {
+                if (count < stock) changeCounter("+");
+              }}
+            >
+              +
+            </Button>
+          </ButtonGroup>
+          <br />
+        </>
+      ) : (
+        <br />
+      )}
 
       <ButtonGroup>
         <Button
