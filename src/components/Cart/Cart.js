@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import CartContext from "../../context/CartContext";
 
-import Item from "../Item/Item";
+import CartItem from "../CartItem";
+
 const Cart = () => {
-  const { getQuantity, cart } = useContext(CartContext);
+  const { getTotalPrice, cart } = useContext(CartContext);
 
   console.log(cart);
   return (
@@ -12,12 +13,13 @@ const Cart = () => {
       <h4> On development...</h4>
       <ul>
         {cart.map((prod) => (
-          // <Item key={prod.id} {...prod} />
-          <li>
-            {prod.quantity} -- {prod.title} - ${prod.price * prod.quantity}
+          <li key={prod.id}>
+            <CartItem {...prod} />
           </li>
         ))}
       </ul>
+
+      {cart.length > 0 ? <h2>Total: {getTotalPrice()}</h2> : <div></div>}
     </>
   );
 };

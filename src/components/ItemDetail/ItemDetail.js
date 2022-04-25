@@ -6,7 +6,7 @@ import { useContext } from "react";
 import CartContext from "../../context/CartContext";
 
 const ItemDetail = ({ id, title, price, description, pictureUrl, stock }) => {
-  const { addItem, isInCart, getQuantityOfItem, removeItem, errors } =
+  const { addItem, isInCart, getQuantity, removeItem, errors } =
     useContext(CartContext);
 
   const handleAdd = (count) => {
@@ -55,7 +55,7 @@ const ItemDetail = ({ id, title, price, description, pictureUrl, stock }) => {
                     <ItemCount
                       onAdd={handleAdd}
                       stock={stock}
-                      initial={getQuantityOfItem(id)}
+                      initial={getQuantity(id)}
                     />
                   </>
                 ) : (

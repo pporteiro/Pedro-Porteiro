@@ -36,6 +36,17 @@ export const CartContextProvider = ({ children }) => {
     }
   };
 
+  const getTotalPrice = (id) => {
+    if (!id) {
+      let total = 0;
+      cart.forEach((prod) => (total += prod.price * prod.quantity));
+      return total;
+    } else {
+      const item = cart.find((prod) => prod.id === id);
+      return item.price * item.quantity;
+    }
+  };
+
   const removeItem = async (id) => {
     const products = cart.filter((prod) => prod.id !== id);
     await setCart(products);
@@ -69,9 +80,11 @@ export const CartContextProvider = ({ children }) => {
         cart,
         addItem,
         getQuantity,
+        getTotalPrice,
         isInCart,
         removeItem,
         errors,
+        clearCart,
       }}
     >
       {children}
