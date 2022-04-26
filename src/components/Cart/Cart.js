@@ -1,11 +1,15 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import CartContext from "../../context/CartContext";
 
 import CartItem from "../CartItem";
 
 const Cart = () => {
+  const [input, setInput] = useState("");
+
   const { getTotalPrice, getQuantity, cart } = useContext(CartContext);
+
+  const taxes = 0.17;
   // console.log(cart);
   const objOrder = {
     items: cart,
@@ -16,6 +20,26 @@ const Cart = () => {
     },
     total: getTotalPrice(),
     date: new Date(),
+  };
+
+  const checkoutHandler = () => {
+    console.log(
+      `Checkout: ${getQuantity()} items in cart. Total price: ${(
+        getTotalPrice() *
+        (1 + taxes)
+      ).toFixed(2)}`
+    );
+    alert(
+      `Checkout: ${getQuantity()} items in cart. Total price: ${(
+        getTotalPrice() *
+        (1 + taxes)
+      ).toFixed(2)}`
+    );
+  };
+
+  const promoCodeHandler = () => {
+    // alert(`Invalid code. (${input.toString().replace(/[._-\s,]/g, "")})`);
+    alert(`Invalid code. (${input.toString().replace(/[^a-zA-Z0-9]/g, "")})`);
   };
 
   //   return (
@@ -95,10 +119,10 @@ const Cart = () => {
                 </div>
                 <div className="flex justify-between mt-10">
                   <label className="font-medium inline-block mb-3 text-sm uppercase">
-                    Taxes
+                    Taxes ( {taxes * 100}% )
                   </label>
                   <span className="font-semibold text-sm">
-                    ${getTotalPrice() * 0.1}
+                    ${(getTotalPrice() * taxes).toFixed(2)}
                   </span>
                 </div>
                 {/* <div>
@@ -121,17 +145,24 @@ const Cart = () => {
                     id="promo"
                     placeholder="Enter your code"
                     className="p-2 text-sm w-full"
+                    onChange={(e) => setInput(e.target.value)}
                   />
                 </div>
-                <button className="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">
+                <button
+                  className="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase"
+                  onClick={() => promoCodeHandler()}
+                >
                   Apply
                 </button>
                 <div className="border-t mt-8">
                   <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                     <span>Total cost</span>
-                    <span>${getTotalPrice() * 1.1}</span>
+                    <span>${(getTotalPrice() * (1 + taxes)).toFixed(2)}</span>
                   </div>
-                  <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
+                  <button
+                    className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
+                    onClick={() => checkoutHandler()}
+                  >
                     Checkout
                   </button>
                 </div>
