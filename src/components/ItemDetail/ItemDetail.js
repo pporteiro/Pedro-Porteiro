@@ -5,7 +5,15 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import CartContext from "../../context/CartContext";
 
-const ItemDetail = ({ id, title, price, description, pictureUrl, stock }) => {
+const ItemDetail = ({
+  id,
+  title,
+  price,
+  category,
+  description,
+  pictureUrl,
+  stock,
+}) => {
   const { addItem, isInCart, getQuantity, removeItem, errors } =
     useContext(CartContext);
 
@@ -16,6 +24,9 @@ const ItemDetail = ({ id, title, price, description, pictureUrl, stock }) => {
       id,
       title,
       price,
+      pictureUrl,
+      category,
+      stock,
       quantity: count,
     };
 

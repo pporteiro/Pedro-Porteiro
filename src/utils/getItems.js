@@ -8,7 +8,7 @@ export const getItems = (categoryId) => {
           ? items.filter((prod) => prod.category === categoryId)
           : items
       );
-    }, 2000);
+    }, 500);
   });
 };
 
@@ -16,7 +16,7 @@ export const getItemById = (id) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(items.find((i) => i.id === id));
-    }, 1000);
+    }, 500);
   });
 };
 
