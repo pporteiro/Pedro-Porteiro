@@ -13,7 +13,7 @@ export const CartContextProvider = ({ children }) => {
     if (isInCart(productToAdd?.id)) {
       const newCart = cart.map((item) => {
         if (item.id === productToAdd.id) {
-          console.log("Update quantity");
+          // console.log("Update quantity");
           const enoughStock = checkStock(productToAdd.quantity, stock);
 
           if (!enoughStock) {
@@ -36,6 +36,17 @@ export const CartContextProvider = ({ children }) => {
     }
   };
 
+  const getTotalPrice = (id) => {
+    if (!id) {
+      let total = 0;
+      cart.forEach((prod) => (total += prod.price * prod.quantity));
+      return total;
+    } else {
+      const item = cart.find((prod) => prod.id === id);
+      return item.price * item.quantity;
+    }
+  };
+
   const removeItem = async (id) => {
     const products = cart.filter((prod) => prod.id !== id);
     await setCart(products);
@@ -44,7 +55,7 @@ export const CartContextProvider = ({ children }) => {
   const getQuantity = (id) => {
     if (id) {
       const item = cart.find((prod) => prod.id === id);
-      console.log("Item already in cart. Quantity:", item.quantity);
+      // console.log("Item already in cart. Quantity:", item.quantity);
       return item.quantity;
     } else {
       let count = 0;
@@ -69,9 +80,11 @@ export const CartContextProvider = ({ children }) => {
         cart,
         addItem,
         getQuantity,
+        getTotalPrice,
         isInCart,
         removeItem,
         errors,
+        clearCart,
       }}
     >
       {children}
