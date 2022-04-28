@@ -6,8 +6,8 @@ import ItemDetail from "../ItemDetail/ItemDetail";
 import Loader from "../Loader/Loader";
 
 //  === FIREBASE ===
-// import { firestoredb } from "../../services/firebase";
-// import { getDocs, doc, getDoc } from "firebase/firestore";
+import { firestoredb } from "../../services/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState();
@@ -16,16 +16,29 @@ const ItemDetailContainer = () => {
   const { productId } = useParams();
 
   useEffect(() => {
-    getItemById(productId)
-      .then((prod) => {
-        setProduct(prod);
+    // getItemById(productId)
+    //   .then((prod) => {
+    //     setProduct(prod);
+    //   })
+    //   .catch((error) => console.log(error, "error"))
+    //   .finally(() => {
+    //     setLoading(false);
+    //   });
+
+    getDoc(doc(firestoredb, "products", productId))
+      .then((response) => {
+        console.log(response);
+        const product = { id: response.id, ...response.data() };
+        setProduct(product);
       })
       .catch((error) => console.log(error, "error"))
       .finally(() => {
         setLoading(false);
       });
 
-    // getDoc(doc(firestoredb, "products"));
+    return () => {
+      setProduct();
+    };
   }, [productId]);
 
   return (

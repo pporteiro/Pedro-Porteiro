@@ -6,17 +6,22 @@ import { getCategories } from "../../utils/getItems";
 import CartWidget from "../CartWidget/CartWidget";
 
 //  === FIREBASE ===
-// import { firestoredb } from "../../services/firebase";
-// import { getDocs, collection } from "firebase/firestore";
+import { firestoredb } from "../../services/firebase";
+import { getDocs, collection } from "firebase/firestore";
 
 const MyNavbar = (props) => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    getCategories().then((categories) => {
+    // getCategories().then((categories) => {
+    //   setCategories(categories);
+    // });
+
+    getDocs(collection(firestoredb, "categories")).then((response) => {
+      const categories = response.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
+      });
       setCategories(categories);
     });
-
-    // getDocs(collection(firestoredb, "categories")).then();
   });
 
   return (
