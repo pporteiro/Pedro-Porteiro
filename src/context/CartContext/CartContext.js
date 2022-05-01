@@ -54,7 +54,7 @@ export const CartContextProvider = ({ children }) => {
 
   const getQuantity = (id) => {
     if (id) {
-      console.log("Entro cart.", cart);
+      // console.log("Entro cart.", cart);
       return cart.find((prod) => prod.id === id)?.quantity;
       // const item = cart.find((prod) => prod.id === id);
       // return item.quantity;

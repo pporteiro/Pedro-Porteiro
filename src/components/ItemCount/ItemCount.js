@@ -53,15 +53,19 @@ const ItemCount = ({ stock, initial, onAdd }) => {
         <br />
       )}
 
-      <ButtonGroup>
-        <Button
-          onClick={() => {
-            if (count <= stock) onAdd(count);
-          }}
-        >
-          Add to cart
-        </Button>
-      </ButtonGroup>
+      {stock > 0 ? (
+        <ButtonGroup>
+          <Button
+            onClick={() => {
+              if (count <= stock) onAdd(count);
+            }}
+          >
+            Add to cart
+          </Button>
+        </ButtonGroup>
+      ) : (
+        <p className="text-red-500">Out of stock</p>
+      )}
     </div>
   );
 };

@@ -3,24 +3,111 @@ import { Link } from "react-router-dom";
 import CartContext from "../../context/CartContext";
 
 import CartItem from "../CartItem";
+import Loader from "../Loader/Loader";
 
+// Firebase imports
+import {
+  writeBatch,
+  getDocs,
+  query,
+  where,
+  collection,
+  documentId,
+  addDoc,
+} from "firebase/firestore";
+import { firestoredb } from "../../services/firebase";
+import CheckoutModal from "../CheckoutModal/CheckoutModal";
 const Cart = () => {
+  const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
+  const [errors, setErrors] = useState([]);
+
+  // Modal states
+  const [modalOn, setModalOn] = useState(false);
+  const [choice, setChoice] = useState(false);
 
   const { getTotalPrice, getQuantity, cart } = useContext(CartContext);
 
   const taxes = 0.17;
-  // console.log(cart);
-  const objOrder = {
-    items: cart,
-    buyer: {
-      name: "Pedro",
-      phone: "123456789",
-      email: "pporteiro22@gmail.com",
-    },
-    total: getTotalPrice(),
-    date: new Date(),
+
+  const createOrder = () => {
+    setLoading(true);
+
+    let errors = [];
+
+    const objOrder = {
+      items: cart,
+      buyer: {
+        name: "Pedro",
+        phone: "123456789",
+        email: "pporteiro22@gmail.com",
+      },
+      total: getTotalPrice() * (1 + taxes),
+      date: new Date(),
+    };
+
+    const ids = cart.map((prod) => prod.id);
+
+    const batch = writeBatch(firestoredb);
+
+    const collectionRef = collection(firestoredb, "products");
+
+    const outOfStock = [];
+
+    getDocs(query(collectionRef, where(documentId(), "in", ids)))
+      .then((response) => {
+        response.docs.forEach((doc) => {
+          const dataDoc = doc.data();
+          const prodQuantity = cart.find(
+            (prod) => prod.id === doc.id
+          )?.quantity;
+
+          console.log(dataDoc);
+          console.log(prodQuantity);
+
+          if (dataDoc.stock >= prodQuantity) {
+            batch.update(doc.ref, { stock: dataDoc.stock - prodQuantity });
+          } else {
+            errors.push(`Not enough stock for ${dataDoc.title}`);
+            console.log("ERROR, NO STOCK");
+            setErrors(errors);
+            outOfStock.push({ id: doc.id, ...dataDoc });
+          }
+        });
+      })
+      .then(() => {
+        if (outOfStock.length === 0) {
+          const collectionRef = collection(firestoredb, "orders");
+          return addDoc(collectionRef, objOrder);
+        } else {
+          return Promise.reject({
+            name: "outOfStockError",
+            products: outOfStock,
+          });
+        }
+      })
+      .then(({ id }) => {
+        batch.commit();
+        console.log(`Order ID: ${id}`);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
+
+  if (loading) {
+    return (
+      <div>
+        <h1>Generating order...</h1>;
+        <div className="pos-center">
+          <Loader />
+        </div>
+      </div>
+    );
+  }
 
   const checkoutHandler = () => {
     console.log(
@@ -29,35 +116,20 @@ const Cart = () => {
         (1 + taxes)
       ).toFixed(2)}`
     );
-    alert(
-      `Checkout: ${getQuantity()} items in cart. Total price: ${(
-        getTotalPrice() *
-        (1 + taxes)
-      ).toFixed(2)}`
-    );
+    // alert(
+    //   `Checkout: ${getQuantity()} items in cart. Total price: ${(
+    //     getTotalPrice() *
+    //     (1 + taxes)
+    //   ).toFixed(2)}`
+    // );
+    console.log(modalOn);
+    setModalOn(true);
   };
 
   const promoCodeHandler = () => {
     // alert(`Invalid code. (${input.toString().replace(/[._-\s,]/g, "")})`);
     alert(`Invalid code. (${input.toString().replace(/[^a-zA-Z0-9]/g, "")})`);
   };
-
-  //   return (
-  //     <>
-  //       <h1 className="text-3xl font-bold underline"> Cart view </h1>
-  //       <h4> On development...</h4>
-  //       <ul>
-  //         {cart.map((prod) => (
-  //           <li key={prod.id}>
-  //             <CartItem {...prod} />
-  //           </li>
-  //         ))}
-  //       </ul>
-
-  //       {cart.length > 0 ? <h2>Total: {getTotalPrice()}</h2> : <div></div>}
-  //     </>
-  //   );
-  // };
 
   return (
     <>
@@ -135,7 +207,7 @@ const Cart = () => {
               </div> */}
                 <div className="py-10">
                   <label
-                    for="promo"
+                    htmlFor="promo"
                     className="font-semibold inline-block mb-3 text-sm uppercase"
                   >
                     Promo Code
@@ -161,9 +233,17 @@ const Cart = () => {
                   </div>
                   <button
                     className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
-                    onClick={() => checkoutHandler()}
+                    // onClick={() => checkoutHandler()}
+                    onClick={() => createOrder()}
                   >
                     Checkout
+                  </button>
+                  <button
+                    className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
+                    onClick={() => checkoutHandler()}
+                    // onClick={() => createOrder()}
+                  >
+                    Modal
                   </button>
                 </div>
               </div>
@@ -177,6 +257,10 @@ const Cart = () => {
             Start shopping
           </Link>
         </div>
+      )}
+
+      {modalOn && (
+        <CheckoutModal setModalOn={setModalOn} setChoice={setChoice} />
       )}
     </>
   );
