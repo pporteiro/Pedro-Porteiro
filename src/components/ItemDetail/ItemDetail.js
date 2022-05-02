@@ -36,9 +36,6 @@ const ItemDetail = ({
   return (
     <>
       <Container>
-        <p>
-          {title}, {price}, {pictureUrl}, {category}
-        </p>
         <Row>
           <Col className="center">
             <Card.Img

@@ -23,7 +23,7 @@ const ItemListContainer = (props) => {
           collection(firestoredb, "products"),
           where("category", "==", categoryId)
         )
-      : query(collection(firestoredb, "products"), orderBy("category", "asc"));
+      : query(collection(firestoredb, "products"), orderBy("price", "asc"));
 
     getDocs(collectionRef)
       .then((response) => {
