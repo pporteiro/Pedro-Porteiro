@@ -7,7 +7,7 @@ import CartWidget from "../CartWidget/CartWidget";
 
 //  === FIREBASE ===
 import { firestoredb } from "../../services/firebase";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, query, orderBy } from "firebase/firestore";
 
 const MyNavbar = (props) => {
   const [categories, setCategories] = useState([]);
@@ -15,14 +15,16 @@ const MyNavbar = (props) => {
     // getCategories().then((categories) => {
     //   setCategories(categories);
     // });
-
-    getDocs(collection(firestoredb, "categories")).then((response) => {
+    console.log("Loading categories");
+    getDocs(
+      query(collection(firestoredb, "categories"), orderBy("linkNumber", "asc"))
+    ).then((response) => {
       const categories = response.docs.map((doc) => {
         return { id: doc.id, ...doc.data() };
       });
       setCategories(categories);
     });
-  });
+  }, []);
 
   return (
     <Navbar
@@ -41,18 +43,19 @@ const MyNavbar = (props) => {
       <Navbar.Toggle />
       <Navbar.Collapse>
         <Nav className="me-auto">
-          {/* <NavDropdown title="Categories">
-            {categories.map((cat) => (
+          {/*<NavDropdown title="Categories">
+             {categories.map((cat) => (
               <NavDropdown.Item
-                // as={NavLink}
+                as={NavLink}
                 key={cat.id}
-                href={`/category/${cat.id}`}
+                to={`/category/${cat.id}`}
+                // href={`/category/${cat.id}`}
               >
                 {cat.description}
               </NavDropdown.Item>
             ))}
             <NavDropdown.Divider />
-            <NavDropdown.Item href="/category/promotions">
+            <NavDropdown.Item as={NavLink} to="/category/promotions">
               Promotions
             </NavDropdown.Item>
           </NavDropdown> */}

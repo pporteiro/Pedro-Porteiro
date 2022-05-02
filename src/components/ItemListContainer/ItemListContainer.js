@@ -2,7 +2,7 @@ import "./ItemListContainer.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getItems } from "../../utils/getItems";
+import { getItems, LoadData } from "../../utils/getItems";
 import ItemList from "../ItemList/ItemList";
 import Loader from "../Loader/Loader";
 
@@ -17,6 +17,7 @@ const ItemListContainer = (props) => {
   const { categoryId } = useParams();
 
   useEffect(() => {
+    setLoading(true);
     const collectionRef = categoryId
       ? query(
           collection(firestoredb, "products"),
@@ -55,10 +56,18 @@ const ItemListContainer = (props) => {
         <div className="pos-center">
           <Loader />
         </div>
-      ) : products ? (
+      ) : products.length > 0 ? (
         <ItemList products={products} />
       ) : (
-        <h1>No products to show</h1>
+        <div className="pos-center">
+          <h1>No products to show</h1>
+          <button
+            className="bg-red-300 rounded p-2 border-red-700 border-2"
+            onClick={() => LoadData(setLoading)}
+          >
+            Click here to load data
+          </button>
+        </div>
       )}
     </div>
   );

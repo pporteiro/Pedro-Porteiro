@@ -25,9 +25,10 @@ const ItemDetailContainer = () => {
     //     setLoading(false);
     //   });
 
+    console.log(productId);
     getDoc(doc(firestoredb, "products", productId))
       .then((response) => {
-        console.log(response);
+        console.log("Respuesta: ", response);
         const product = { id: response.id, ...response.data() };
         setProduct(product);
       })
