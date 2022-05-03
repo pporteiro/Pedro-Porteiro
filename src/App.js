@@ -11,6 +11,7 @@ import Cart from "./components/Cart/Cart";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { CartContextProvider } from "./context/CartContext";
+import Form from "./components/Form/Form";
 
 const App = () => {
   const commerceName = "PedidoLibre";
@@ -40,6 +41,13 @@ const App = () => {
               <Route path="*" element={<h1>404 NOT FOUND</h1>} />
 
               <Route path="/cart" element={<Cart />} />
+
+              <Route path="/checkout-form" element={<Form />} />
+
+              <Route
+                path="/checkout-success"
+                element={<h1>Order completed!!!</h1>}
+              />
 
               {/* <Route path="/MLGet" element={<MLDataGet />} /> */}
             </Routes>

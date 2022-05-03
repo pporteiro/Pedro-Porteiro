@@ -7,6 +7,27 @@ export const CartContextProvider = ({ children }) => {
   const [errors, setErrors] = useState([]);
   console.log(cart);
 
+  const [user, setUser] = useState({ name: "", email: "", phone: "" });
+  const [userErrors, setUserErrors] = useState([]);
+
+  const loadUserData = ({ name, email, phone }) => {
+    let errors = [];
+
+    const obj = {
+      name,
+      email,
+      phone,
+    };
+
+    if (name !== "" && email !== "" && phone !== "") {
+      setUser(obj);
+    } else {
+      errors.push({ name: `Empty field detected.`, obj });
+    }
+
+    if (errors.length > 0) console.log(errors);
+  };
+
   const addItem = (productToAdd, stock) => {
     let errors = [];
 
@@ -87,6 +108,8 @@ export const CartContextProvider = ({ children }) => {
         removeItem,
         errors,
         clearCart,
+        user,
+        loadUserData,
       }}
     >
       {children}

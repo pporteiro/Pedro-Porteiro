@@ -17,6 +17,7 @@ import {
 } from "firebase/firestore";
 import { firestoredb } from "../../services/firebase";
 import CheckoutModal from "../CheckoutModal/CheckoutModal";
+import Form from "../Form/Form";
 const Cart = () => {
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
@@ -30,18 +31,20 @@ const Cart = () => {
 
   const taxes = 0.17;
 
-  const createOrder = () => {
+  const objetoUsuario = {
+    name: "Teresa",
+    phone: "123456789",
+    email: "teresa@gmail.com",
+  };
+
+  const createOrder = (usrObj) => {
     setLoading(true);
 
     let errors = [];
 
     const objOrder = {
       items: cart,
-      buyer: {
-        name: "Pedro",
-        phone: "123456789",
-        email: "pporteiro22@gmail.com",
-      },
+      buyer: usrObj,
       total: getTotalPrice() * (1 + taxes),
       date: new Date(),
     };
@@ -233,18 +236,20 @@ const Cart = () => {
                   </div>
                   <button
                     className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
-                    // onClick={() => checkoutHandler()}
-                    onClick={() => createOrder()}
+                    onClick={() => checkoutHandler()}
+                    // onClick={() => createOrder(objetoUsuario)}
                   >
                     Checkout
                   </button>
-                  <button
+
+                  {/* MODAL - TODO */}
+                  {/* <button
                     className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
                     onClick={() => checkoutHandler()}
                     // onClick={() => createOrder()}
                   >
                     Modal
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -260,7 +265,11 @@ const Cart = () => {
       )}
 
       {modalOn && (
-        <CheckoutModal setModalOn={setModalOn} setChoice={setChoice} />
+        <Form
+          setModalOn={setModalOn}
+          setChoice={setChoice}
+          createOrder={createOrder}
+        />
       )}
     </>
   );
