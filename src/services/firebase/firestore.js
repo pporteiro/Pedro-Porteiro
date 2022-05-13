@@ -1,5 +1,13 @@
 import { firestoredb } from "./index";
-import { getDocs, query, collection, where, orderBy } from "firebase/firestore";
+import {
+  getDocs,
+  query,
+  collection,
+  where,
+  orderBy,
+  getDoc,
+  doc,
+} from "firebase/firestore";
 import { createAdaptedProductFormFirestore } from "../../adapters/productAdapter";
 
 export const getProducts = (categoryId) => {
@@ -16,11 +24,22 @@ export const getProducts = (categoryId) => {
         const products = response.docs.map((doc) => {
           return createAdaptedProductFormFirestore(doc);
         });
-        // console.log(products);
         resolve(products);
       })
       .catch((error) => {
         reject("ERROR", error);
       });
+  });
+};
+
+export const getProduct = (productId) => {
+  return new Promise((resolve, reject) => {
+    getDoc(doc(firestoredb, "products", productId))
+      .then((response) => {
+        console.log("Respuesta: ", response);
+        const product = createAdaptedProductFormFirestore(response);
+        resolve(product);
+      })
+      .catch((error) => reject(error));
   });
 };

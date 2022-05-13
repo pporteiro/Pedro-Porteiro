@@ -68,9 +68,9 @@ export const CartContextProvider = ({ children }) => {
     }
   };
 
-  const removeItem = async (id) => {
+  const removeItem = (id) => {
     const products = cart.filter((prod) => prod.id !== id);
-    await setCart(products);
+    setCart(products);
   };
 
   const getQuantity = (id) => {

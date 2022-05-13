@@ -11,8 +11,7 @@ const CartItem = ({
   pictureUrl,
   stock,
 }) => {
-  const { getTotalPrice, removeItem, getQuantity, addItem } =
-    useContext(CartContext);
+  const { removeItem, getQuantity, addItem } = useContext(CartContext);
 
   const handleAdd = (count) => {
     console.log(`Added ${count} items to cart!`);
@@ -47,7 +46,6 @@ const CartItem = ({
           <span className="font-bold text-sm">{title}</span>
           <span className="text-red-500 text-xs">{category}</span>
           <button
-            // href={`/item/${id}`}
             onClick={() => removeItem(id)}
             className="font-semibold hover:text-red-500 text-gray-500 text-xs"
           >

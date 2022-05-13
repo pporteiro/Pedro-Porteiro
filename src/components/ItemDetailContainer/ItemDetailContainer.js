@@ -1,45 +1,24 @@
 import "./ItemDetailContainer.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { getItemById } from "../../utils/getItems";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import Loader from "../Loader/Loader";
 
-//  === FIREBASE ===
-import { firestoredb } from "../../services/firebase";
-import { doc, getDoc } from "firebase/firestore";
-
+import { useAsync } from "../../hooks/useAsync";
+import { getProduct } from "../../services/firebase/firestore";
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
 
   const { productId } = useParams();
 
-  useEffect(() => {
-    // getItemById(productId)
-    //   .then((prod) => {
-    //     setProduct(prod);
-    //   })
-    //   .catch((error) => console.log(error, "error"))
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
-
-    getDoc(doc(firestoredb, "products", productId))
-      .then((response) => {
-        console.log("Respuesta: ", response);
-        const product = { id: response.id, ...response.data() };
-        setProduct(product);
-      })
-      .catch((error) => console.log(error, "error"))
-      .finally(() => {
-        setLoading(false);
-      });
-
-    return () => {
-      setProduct();
-    };
-  }, [productId]);
+  useAsync(
+    setLoading,
+    () => getProduct(productId),
+    setProduct,
+    () => console.log("Error in ItemDetailContainer"),
+    [productId]
+  );
 
   return (
     <div className="ItemsDetailContainer">
