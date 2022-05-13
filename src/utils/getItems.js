@@ -10,7 +10,7 @@ export const getItems = (categoryId) => {
           ? items.filter((prod) => prod.category === categoryId)
           : items
       );
-    }, 500);
+    }, 5000);
   });
 };
 
