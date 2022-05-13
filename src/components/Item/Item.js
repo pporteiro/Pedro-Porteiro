@@ -4,13 +4,14 @@ import { Card, Button } from "react-bootstrap";
 import { Grid } from "@material-ui/core";
 
 const Item = (props) => {
-  const handleClick = (e) => {
-    e.stopPropagation();
-    console.log("hice click en item");
-  };
+  // const handleClick = (e) => {
+  //   e.stopPropagation();
+  //   console.log("hice click en item");
+  // };
 
   return (
-    <Grid item xs={12} sm={6} md={3} onClick={handleClick}>
+    // <Grid item xs={12} sm={6} md={3} onClick={handleClick}>
+    <Grid item xs={12} sm={6} md={3}>
       {/* <Card style={{ width: "18rem" }}> */}
       <Card className="cardClass">
         <Card.Img className="card-image" variant="top" src={props.pictureUrl} />
@@ -22,7 +23,7 @@ const Item = (props) => {
 
             <Link to={`/item/${props.id}`}>
               <Button className="btn-detail" variant="primary">
-                Detalles
+                Details
               </Button>
             </Link>
           </div>

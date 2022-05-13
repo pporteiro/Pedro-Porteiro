@@ -14,7 +14,8 @@
 
 .card-image {
   height: auto;
-  max-height: 250px;
+  /* max-height: 250px; */
+  max-height: 125px;
   width: auto;
   max-width: 100px;
   margin: auto;
@@ -28,6 +29,7 @@
   padding: 8px;
   object-fit: cover;
   text-align: center;
+  padding-top: 2rem;
 }
 
 .btn-detail a {
