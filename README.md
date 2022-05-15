@@ -17,13 +17,13 @@ The project uses Firebase to store the data of the products and information of t
 
 # Technologies Used:
 
-## 💻 JavaScript <br>
+💻 JavaScript <br>
 
-## ⚛️ React Js <br>
+⚛️ React Js <br>
 
-## TailwindCSS
+TailwindCSS
 
-## Firebase
+Firebase
 
 # Firestore
 
