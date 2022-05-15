@@ -1,4 +1,4 @@
-export const createAdaptedProductFormFirestore = (doc) => {
+export const createAdaptedProductFromFirestore = (doc) => {
   const data = doc.data();
 
   const formattedProduct = {
@@ -8,6 +8,7 @@ export const createAdaptedProductFormFirestore = (doc) => {
     price: data.price,
     stock: data.stock,
     category: data.category,
+    description: data.description,
   };
 
   return formattedProduct;

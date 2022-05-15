@@ -1,6 +1,6 @@
 import "./ItemDetail.css";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import ItemCount from "../ItemCount/ItemCount";
+import ItemCount from "../ItemCount";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import CartContext from "../../context/CartContext";
@@ -18,8 +18,6 @@ const ItemDetail = ({
     useContext(CartContext);
 
   const handleAdd = (count) => {
-    // console.log(`Added ${count} items to cart!`);
-
     const objProd = {
       id,
       title,
@@ -45,7 +43,7 @@ const ItemDetail = ({
             />
           </Col>
           <Col className="center-text">
-            <Card className=" ">
+            <Card className="cardDetail">
               <Row>
                 <h1 className="card-title">{title}</h1>
               </Row>
@@ -61,29 +59,38 @@ const ItemDetail = ({
               <Row>
                 {isInCart(id) ? (
                   <>
-                    {/* <Link to="/cart">Ir al carrito</Link> */}
-
                     <ItemCount
                       onAdd={handleAdd}
                       stock={stock}
                       initial={getQuantity(id)}
+                      inCart={true}
                     />
                   </>
                 ) : (
-                  <ItemCount onAdd={handleAdd} stock={stock} initial={1} />
+                  <ItemCount
+                    onAdd={handleAdd}
+                    stock={stock}
+                    initial={1}
+                    inCart={false}
+                  />
                 )}
                 {isInCart(id) ? (
-                  <div>
-                    <Link to="/cart">See in cart</Link>
-                    <p
-                      className="btn btn-primary yaencarro"
-                      onClick={() => {
-                        removeItem(id);
-                      }}
-                    >
-                      Remove from cart
-                    </p>
-                  </div>
+                  <>
+                    <div className="mt-2">
+                      <Link to="/cart">See in cart</Link>
+                    </div>
+
+                    <div className="mt-2">
+                      <p
+                        className="btn btn-primary yaencarro"
+                        onClick={() => {
+                          removeItem(id);
+                        }}
+                      >
+                        Remove from cart
+                      </p>
+                    </div>
+                  </>
                 ) : (
                   <div></div>
                 )}

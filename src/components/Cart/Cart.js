@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import CartContext from "../../context/CartContext";
 
 import CartItem from "../CartItem";
-import Loader from "../Loader/Loader";
+import Loader from "../Loader";
+import Form from "../Form";
 
 // Firebase imports
 import {
@@ -16,8 +17,7 @@ import {
   addDoc,
 } from "firebase/firestore";
 import { firestoredb } from "../../services/firebase";
-import CheckoutModal from "../CheckoutModal/CheckoutModal";
-import Form from "../Form/Form";
+
 const Cart = () => {
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
@@ -53,7 +53,7 @@ const Cart = () => {
 
     const batch = writeBatch(firestoredb);
 
-    const collectionRef = collection(firestoredb, "products");
+    const collectionRef = collection(firestoredb, "productsV2");
 
     const outOfStock = [];
 
@@ -65,14 +65,10 @@ const Cart = () => {
             (prod) => prod.id === doc.id
           )?.quantity;
 
-          console.log(dataDoc);
-          console.log(prodQuantity);
-
           if (dataDoc.stock >= prodQuantity) {
             batch.update(doc.ref, { stock: dataDoc.stock - prodQuantity });
           } else {
             errors.push(`Not enough stock for ${dataDoc.title}`);
-            console.log("ERROR, NO STOCK");
             setErrors(errors);
             outOfStock.push({ id: doc.id, ...dataDoc });
           }
@@ -119,13 +115,6 @@ const Cart = () => {
         (1 + taxes)
       ).toFixed(2)}`
     );
-    // alert(
-    //   `Checkout: ${getQuantity()} items in cart. Total price: ${(
-    //     getTotalPrice() *
-    //     (1 + taxes)
-    //   ).toFixed(2)}`
-    // );
-    console.log(modalOn);
     setModalOn(true);
   };
 
@@ -200,14 +189,6 @@ const Cart = () => {
                     ${(getTotalPrice() * taxes).toFixed(2)}
                   </span>
                 </div>
-                {/* <div>
-                <label className="font-medium inline-block mb-3 text-sm uppercase">
-                  Shipping
-                </label>
-                <select className="block p-2 text-gray-600 w-full text-sm">
-                  <option>Standard shipping - $10.00</option>
-                </select>
-              </div> */}
                 <div className="py-10">
                   <label
                     htmlFor="promo"
@@ -237,19 +218,9 @@ const Cart = () => {
                   <button
                     className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
                     onClick={() => checkoutHandler()}
-                    // onClick={() => createOrder(objetoUsuario)}
                   >
                     Checkout
                   </button>
-
-                  {/* MODAL - TODO */}
-                  {/* <button
-                    className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
-                    onClick={() => checkoutHandler()}
-                    // onClick={() => createOrder()}
-                  >
-                    Modal
-                  </button> */}
                 </div>
               </div>
             </div>

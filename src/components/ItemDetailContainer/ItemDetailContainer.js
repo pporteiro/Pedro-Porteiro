@@ -1,8 +1,8 @@
 import "./ItemDetailContainer.css";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import ItemDetail from "../ItemDetail/ItemDetail";
-import Loader from "../Loader/Loader";
+import ItemDetail from "../ItemDetail";
+import Loader from "../Loader";
 
 import { useAsync } from "../../hooks/useAsync";
 import { getProduct } from "../../services/firebase/firestore";

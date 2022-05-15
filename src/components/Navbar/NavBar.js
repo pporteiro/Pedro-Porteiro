@@ -1,30 +1,22 @@
 import "bootstrap/dist/css/bootstrap.css";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { Nav, Navbar } from "react-bootstrap";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { getCategories } from "../../utils/getItems";
-import CartWidget from "../CartWidget/CartWidget";
-
-//  === FIREBASE ===
-import { firestoredb } from "../../services/firebase";
-import { getDocs, collection, query, orderBy } from "firebase/firestore";
+import CartWidget from "../CartWidget";
+import { getCategories } from "../../services/firebase/firestore";
+import { useAsync } from "../../hooks/useAsync";
 
 const MyNavbar = (props) => {
   const [categories, setCategories] = useState([]);
-  useEffect(() => {
-    // getCategories().then((categories) => {
-    //   setCategories(categories);
-    // });
-    console.log("Loading categories");
-    getDocs(
-      query(collection(firestoredb, "categories"), orderBy("linkNumber", "asc"))
-    ).then((response) => {
-      const categories = response.docs.map((doc) => {
-        return { id: doc.id, ...doc.data() };
-      });
-      setCategories(categories);
-    });
-  }, []);
+  const [loading, setLoading] = useState(false);
+
+  useAsync(
+    setLoading,
+    () => getCategories(),
+    setCategories,
+    () => console.log("Error in NavBar (Categories)"),
+    []
+  );
 
   return (
     <Navbar
@@ -43,36 +35,21 @@ const MyNavbar = (props) => {
       <Navbar.Toggle />
       <Navbar.Collapse>
         <Nav className="me-auto">
-          {/*<NavDropdown title="Categories">
-             {categories.map((cat) => (
-              <NavDropdown.Item
-                as={NavLink}
-                key={cat.id}
-                to={`/category/${cat.id}`}
-                // href={`/category/${cat.id}`}
-              >
-                {cat.description}
-              </NavDropdown.Item>
-            ))}
-            <NavDropdown.Divider />
-            <NavDropdown.Item as={NavLink} to="/category/promotions">
-              Promotions
-            </NavDropdown.Item>
-          </NavDropdown> */}
-
-          {categories.map((cat) => (
-            <Nav.Link
-              as={NavLink}
-              key={cat.id}
-              to={`/category/${cat.id}`}
-              eventKey={`link-${cat.linkNumber}`}
-              className={(isActive) =>
-                isActive ? "active-link" : "inactive-link"
-              }
-            >
-              {cat.description}
-            </Nav.Link>
-          ))}
+          {loading
+            ? ""
+            : categories.map((cat) => (
+                <Nav.Link
+                  as={NavLink}
+                  key={cat.id}
+                  to={`/category/${cat.id}`}
+                  eventKey={`link-${cat.linkNumber}`}
+                  className={(isActive) =>
+                    isActive ? "active-link" : "inactive-link"
+                  }
+                >
+                  {cat.description}
+                </Nav.Link>
+              ))}
 
           <Nav.Link as={NavLink} to="/contact-us" eventKey="link-4">
             Contact Us

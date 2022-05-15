@@ -3,8 +3,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { LoadData } from "../../utils/getItems";
-import ItemList from "../ItemList/ItemList";
-import Loader from "../Loader/Loader";
+import ItemList from "../ItemList";
+import Loader from "../Loader";
 
 import { getProducts } from "../../services/firebase/firestore";
 import { useAsync } from "../../hooks/useAsync";
@@ -23,6 +23,8 @@ const ItemListContainer = (props) => {
     [categoryId]
   );
 
+  console.log(products);
+
   return (
     <div className="ItemsListContainer">
       {loading ? (
@@ -33,13 +35,7 @@ const ItemListContainer = (props) => {
         <ItemList products={products} />
       ) : (
         <div className="pos-center">
-          <h1>No products to show</h1>
-          <button
-            className="bg-red-300 rounded p-2 border-red-700 border-2"
-            onClick={() => LoadData(setLoading)}
-          >
-            Click here to load data
-          </button>
+          <h1>No products to show for the category ({categoryId})</h1>
         </div>
       )}
     </div>

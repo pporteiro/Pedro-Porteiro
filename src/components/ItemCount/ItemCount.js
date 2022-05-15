@@ -2,11 +2,11 @@ import "./ItemCount.css";
 import { useState, useEffect } from "react";
 import { ButtonGroup, Button } from "react-bootstrap";
 
-const ItemCount = ({ stock, initial, onAdd }) => {
+const ItemCount = ({ stock, initial, onAdd, inCart }) => {
   const [count, setCount] = useState(1);
+  const [btnString, setBtnString] = useState("Add to cart");
 
   useEffect(() => {
-    // console.log("cambio el count");
     setCount(initial);
   }, [initial]);
 
@@ -19,6 +19,13 @@ const ItemCount = ({ stock, initial, onAdd }) => {
       console.log(`Something went wrong ${condition} is not recognised.`);
     }
   };
+
+  useEffect(() => {
+    if (inCart) setBtnString("Modify quantity");
+    console.log(btnString);
+  }, [inCart]);
+
+  console.log(inCart);
 
   return (
     <div className="">
@@ -60,7 +67,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
               if (count <= stock) onAdd(count);
             }}
           >
-            Add to cart
+            {btnString}
           </Button>
         </ButtonGroup>
       ) : (

@@ -1,4 +1,5 @@
 import items from "../mock/items";
+import itemsV2 from "../mock/itemsV2";
 import { firestoredb } from "../services/firebase";
 import { collection, addDoc } from "firebase/firestore";
 
@@ -8,7 +9,7 @@ export const getItems = (categoryId) => {
       resolve(
         categoryId
           ? items.filter((prod) => prod.category === categoryId)
-          : items
+          : itemsV2
       );
     }, 5000);
   });
@@ -40,7 +41,7 @@ export const LoadData = (setLoading) => {
     .then((prods) => {
       prods.map(
         ({ title, description, price, stock, category, pictureUrl }) => {
-          addDoc(collection(firestoredb, "productitos"), {
+          addDoc(collection(firestoredb, "productsV2"), {
             title,
             description,
             price,

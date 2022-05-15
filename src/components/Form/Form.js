@@ -16,12 +16,9 @@ const Form = ({ setModalOn, setChoice, createOrder }) => {
       email: e.target.email.value,
       phone: e.target.phone.value,
     };
-    console.log(obj);
     loadUserData(obj);
     createOrder(obj);
-
     clearCart();
-    // setModalOn(false);
     navigate("/checkout-success");
   };
 

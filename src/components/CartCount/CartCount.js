@@ -4,7 +4,6 @@ const CartCount = ({ stock, initial, onAdd }) => {
   const [count, setCount] = useState(1);
 
   useEffect(() => {
-    // console.log("CART!! cambio el count");
     setCount(initial);
   }, [initial]);
 
