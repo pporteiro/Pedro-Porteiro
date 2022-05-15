@@ -8,7 +8,6 @@ export const CartContextProvider = ({ children }) => {
   console.log(cart);
 
   const [user, setUser] = useState({ name: "", email: "", phone: "" });
-  const [userErrors, setUserErrors] = useState([]);
 
   const loadUserData = ({ name, email, phone }) => {
     let errors = [];
@@ -34,7 +33,6 @@ export const CartContextProvider = ({ children }) => {
     if (isInCart(productToAdd?.id)) {
       const newCart = cart.map((item) => {
         if (item.id === productToAdd.id) {
-          // console.log("Update quantity");
           const enoughStock = checkStock(productToAdd.quantity, stock);
 
           if (!enoughStock) {
@@ -75,11 +73,7 @@ export const CartContextProvider = ({ children }) => {
 
   const getQuantity = (id) => {
     if (id) {
-      // console.log("Entro cart.", cart);
       return cart.find((prod) => prod.id === id)?.quantity;
-      // const item = cart.find((prod) => prod.id === id);
-      // return item.quantity;
-      // console.log("Item already in cart. Quantity:", item.quantity);
     } else {
       let count = 0;
       cart.forEach((prod) => {

@@ -23,7 +23,7 @@ const ItemCount = ({ stock, initial, onAdd, inCart }) => {
   useEffect(() => {
     if (inCart) setBtnString("Modify quantity");
     console.log(btnString);
-  }, [inCart]);
+  }, [inCart]); //eslint-disable-line
 
   console.log(inCart);
 
