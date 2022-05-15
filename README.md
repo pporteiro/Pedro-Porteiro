@@ -1,72 +1,82 @@
 # Pedro-Porteiro
 
-# Getting Started with Create React App
+# About the Project: 📚
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This e-commerce was made as the final project of React Course from CoderHouse. <br>
+It shows a gallery with different products and categories which can be used as filters.<br>
+When choosing a product, more information will be shown and a counter to choose the amount you want to add to cart. After adding the desired product to cart, you can modify the amount or delete the product from cart. <br>
+In cart view you'll see all the products you added, you can change the quantity for each item, remove the product from the cart, apply a promotional code (not implemented yet) or checkout. <br>
+If you checkout, you'll be asked for some information (name, email, phone) which will be attached to the order.
+If the order was placed succesfully, you'll be redirected to a new page with a confirmation message.
+<br>
+The project uses Firebase to store the data of the products and information of the orders.
 
-## Available Scripts
+# The project looks like this: 📷
 
-In the project directory, you can run:
+![](ecommerce.gif)
+
+# Technologies Used:
+
+## 💻 JavaScript <br>
+
+## ⚛️ React Js <br>
+
+## TailwindCSS
+
+## Firebase
+
+# Firestore
+
+Details for the structure of the information in Firestore:
+
+### Products
+
+| Field       | Type   | Value       |
+| ----------- | ------ | ----------- |
+| title       | String | title       |
+| description | String | description |
+| pictureUrl  | String | image URL   |
+| category    | String | category    |
+| price       | Number | price       |
+| stock       | Number | stock       |
+
+### Categories
+
+| Field       | Type   | Value           |
+| ----------- | ------ | --------------- |
+| id          | String | id              |
+| description | String | description     |
+| linkNumber  | Number | ordering number |
+
+### Orders
+
+| Field | Type   | Value                    |
+| ----- | ------ | ------------------------ |
+| buyer | Object | Buyer data               |
+| date  | Date   | Date of creation         |
+| items | Array  | Array of objects in cart |
+| total | Number | Total cost               |
+
+# Setup / Installation: 💻
+
+Use the following commands for setup and installation.
+
+### `git clone git@github.com:pporteiro/ecommerce-Porteiro.git`
+
+### `cd ecommerce-Porteiro`
+
+### `npm install`
 
 ### `npm start`
 
-Runs the app in the development mode.\
+This will run the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Status: 📶
 
-### `npm test`
+The project is complete for the course meeting all the requirements listed. Still it's under development. <br>
+Next steps will be to redesign the whole web using TailwindCSS to learn about it and adding authentication to fill buyers data from user information and implement promotional codes.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Credits: 📝
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thanks to CoderHouse for the great course, to [<b>Sebastián</b>](https://www.linkedin.com/in/sebastian-zuviria/) for being an amazing teacher, to <b>Romina</b> for her dedication as a tutor, and to every other student for their help and support!
